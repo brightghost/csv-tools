@@ -1,0 +1,52 @@
+These are the Wellspring coding exercises.
+
+These exercises have a ramping difficulty level, with the last task
+indexed to the ability of a mid-level engineer at Wellspring.  You are
+not expected to be able to complete the full set (but we appreciate any
+attempt to do so!).  Please don't spend more than 4 to 6 hours on this!
+ You have 1 week to submit your results, but we'd prefer to see them
+back by Monday if possible.
+
+There are 3 CSV files included with this exercise.  They will be used as
+input to your scripts.
+
+Each task should be implemented as a separate script.  Your scripts will
+be run like this:
+
+/bin/bash 1.sh 1.csv 2.csv 3.csv
+/bin/bash 2.sh 1.csv 2.csv 3.csv
+/bin/bash 3.sh 1.csv 2.csv 3.csv
+/bin/bash 4.sh 1.csv 2.csv 3.csv
+...etc...
+
+For all exercises, don't worry about printing extra copies of the header.
+
+
+Please perform the following tasks:
+
+1) Merge the input data into one file named "merged.csv".
+
+2) Print out all lines that contain the string "NODATA" on stderr
+
+3) Sort all input data by 'timestamp' and output on stdout with more
+recent timestamps at the bottom.
+
+4) Sort all input data by 'name' and output on stdout with Z at the top
+and A at the bottom.
+
+5) Print the number of times each name appears on stdout.  Sort the list
+by number of appearances with largest numbers at the bottom.
+
+6) Print the average of all values in the 'result1' column to stdout.
+
+7) Print the mean, media and mode for the combined values from the
+result1, result2 and result3 columns, broken out by the 'name' column.
+Example output:
+        UNACLI
+         Mean: 2133.68421052631578947368
+         Median: 9914
+         Mode: No mode
+        UNSEPA
+         Mean: 1551.92105263157894736842
+         Median: 9334.50000000000000000000
+         Mode: 966
