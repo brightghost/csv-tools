@@ -1,4 +1,5 @@
 import csv
+import sys
 from tempfile import TemporaryFile
 # lets just focus on the python & deal w/ wrapping it in sh later
 # notes for next version: 
@@ -46,7 +47,7 @@ def meanCol (infile, col):
 				col_total =+ int(row[col])
 				i++ # gives us an accurate total excluding invalidated data
 			except ValueError:
-				print("data \"", row[col], "\" is not a number")
+				print("data \"", row[col], "\" is not a number", file=sys.stderr)
 		return col_total/i
 
 
@@ -60,7 +61,7 @@ def medianCol (infile, col):
 			try:
 				values.append(int(row[col]))
 			except ValueError:
-				print("data \"", row[col], "\" is not a number")
+				print("data \"", row[col], "\" is not a number", file=sys.stderr)
 		sorted_values = sorted(values)
 		return median(sorted_values)
 		
@@ -75,7 +76,42 @@ def median (mylist):
 	return median_val
 
 def modeCol (infile, col):
-	Pass
+''' returns mode of given col in csv file. currently uses statistics module
+which is new in 3.4. TODO rewrite without this'''
+	with open(infile, newline='') as csvfile:
+		csvreader = csv.reader(csvfile, delimiter=',')
+		values = []
+		for row in csvreader:
+			try:
+				values.append(int(row[col]))
+			except ValueError:
+				print("data \"", row[col], "\" is not a number", file=sys.stderr)
+		sorted_values = sorted(values)
+		return statisctics.mode(sorted_values)
+
+# def modeCol (infile, col):
+# 	'''takes a csv and returned the most frequent value, 
+# 	or None if a tie'''
+# 	with open(infile, newline='') as csvfile:
+# 		csvreader = csv.reader(csvfile, delimiter=',')
+# 		values = []
+# 		for row in csvreader:
+# 			print(row[col])
+# 			try:
+# 				values.append(int(row[col]))
+# 			except ValueError:
+# 				print("data \"", row[col], "\" is not a number", file=sys.stderr)
+# 		sorted_values = sorted(values)
+# 		value_count = 0
+# 		prev_val = None
+# 		for val in sorted_values:
+# 			if val == prev_val | prev_val == None:
+# 				value_count++
+# 				prev_val = val
+
+
+
+
 
 
 if __name__ == "__main__":
